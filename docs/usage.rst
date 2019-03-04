@@ -41,6 +41,7 @@ Random readable urls/path; rationale: easier to read > easier to memorize > easi
 	}
 	
 DONT TRUST THE SERVICE....ALWAYS ENCRYPT::
+
 	keybase encrypt -i Raspberry_Pi_Logo.svg.png -o r_keybase chris
 
 	openssl enc -aes-256-cbc -salt -in Raspberry_Pi_Logo.svg.png -out r_encrypted
