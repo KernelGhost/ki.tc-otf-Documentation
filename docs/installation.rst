@@ -2,6 +2,8 @@
 Installation
 ============
 
-Install the package with pip::
+The source code will eventually be released to the public, unitl then:
 
-    $ pip install read-the-docs-template
+    https://ki.tc/otf
+
+    
