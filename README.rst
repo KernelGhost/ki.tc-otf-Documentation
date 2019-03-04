@@ -1,41 +1,30 @@
-Template
+OTF - One Time File Sharing
 ========
 
-$project will solve your problem of where to start with documentation,
-by providing a basic explanation of how to do it easily.
+What is /otf?
+----
 
-Look how easy it is to use:
+* /otf is part of my CLI for the web project; dubbed as Keep It Tidy Charles(kitc). As the name suggests; it's an Ephemeral File Sharing(EFS)-service that was designed initially as an api. The system has random readable urls/path through what3words's api; rationale: easier to read > easier to memorize > easier to verbally share. The process is actually fascinating as it's generating random longitudes and latitudes for any given upload, passes it to what3words api, and then, the 3 words are passed and stored. When the api fails, it falls back to 5 random characters. 
 
-    import project
-    # Get your stuff done
-    project.do_stuff()
+* There are two links for any given file:
+    [1] The download link 
+    [2] The download page link.
 
-Features
---------
+The download page link was created to circumvent file deletion due to services that request header info[many social media sites and IM services do this]. 
 
-- Be awesome
-- Make things faster
+* File retention is 27 days.
+* Max upload size is 400mb.
 
-Installation
-------------
+How does it differ from other EFS-services?
+----
 
-Install $project by running:
+To be completely honest, it doesn't.
 
-    install project
+Drawbacks?
+----
+Aesthetics and an upload bar. 
 
-Contribute
-----------
+Why should I use /otf?
+----
 
-- Issue Tracker: github.com/$project/$project/issues
-- Source Code: github.com/$project/$project
-
-Support
--------
-
-If you are having issues, please let us know.
-We have a mailing list located at: project@google-groups.com
-
-License
--------
-
-The project is licensed under the BSD license.
+With the introduction of UID and IID, the system allows or a marginal trust between the uploader and the recipient. 
