@@ -55,9 +55,11 @@ IID stands for Issuer Identification; it’s a basic sha256 hash of the uploader
 
 UID stands for User Identification; it acts like a regular api key for verified uploads. The resultant of which is UIDCERT, the certificate used to identify approved uploads. The certificate is the user’s email + a shared secret checksum.
 
-The logic behind adding UID and UIDCERT is to verify that someone using Alice’s UID did in fact upload the file. Alice’s email is not accessible without the UID hash. The system relies on Alice’s complete trust in the service. Bob can easily check whether or not alice did in fact upload the file by calculating the hash of Alice’s known email and the provided secret.
+The logic behind adding UID and UIDCERT is to verify that Alice’s UID did in fact upload the file. Alice’s email is not accessible without the UID hash. The system relies on Alice’s complete trust in the service. Bob can easily check whether or not alice did in fact upload the file by calculating the hash of Alice’s known email and the provided secret.
 
 	echo -n alice@crypto.com:secret | sha256sum
+	
+If Alice has a keybase account, a small icon will appear next to the UIDCERT allowing for easier verification. 
 	
 IID will act as warning later on, the system will keep track of iid’s and notify users if it’s changed.  
 
