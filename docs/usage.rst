@@ -50,40 +50,64 @@ DONT TRUST THE SERVICE....ALWAYS ENCRYPT::
 ====
 Understanding IID and UID
 ====
+Generate UID:
 
-IID stands for Issuer Identification; it’s a basic sha256 hash of the uploader's ip address and a secret salt. It signifies an ip change.
+	curl -X POST -F 'keybase_id=YOUR_KEYBASE-USERNAME' https://ki.tc/otf/generate_key
 
-UID stands for User Identification; it acts like a regular api key for verified uploads. The resultant of which is UIDCERT, the certificate used to identify approved uploads. The certificate is the user’s email + a shared secret checksum.
 
-The logic behind adding UID and UIDCERT is to verify that Alice’s UID did in fact upload the file. Alice’s email is not accessible without the UID hash. The system relies on Alice’s complete trust in the service. Bob can easily check whether or not alice did in fact upload the file by calculating the hash of Alice’s known email and the provided secret.
+	{
+	  "generate_key": {
+	    "Attention": "Make sure it's public",
+	    "Instructions": "Create a text file under /otf so that --> https://keybase.pub/YOUR_KEYBASE-USERNAME'/otf/otf_key.txt Use /check_key to validate your uid",
+	    "keybase_id_status": true,
+	    "uid": "9ff40341dc7c978839abd831595f65ef2b4aba9cda79d7c1057f335ac6dd66ec"
+	  }
 
-	echo -n alice@crypto.com:secret | sha256sum
+	  
+Check UID in Keybase, make sure you have created https://keybase.pub/YOUR_KEYBASE-USERNAME/otf/otf_key.txt
+
+	curl -X POST -F 'uid=9ff40341dc7c978839abd831595f65ef2b4aba9cda79d7c1057f335ac6dd66ec' https://ki.tc/otf/check_key
+
+	{
+	  "check": {
+	    "Attention": "Do not lose your iid",
+	    "iid": "ca98cc2b5cd7d1b8cabaa748a252623c54c65942a608b315bfe2dcfb44cd66e7",
+	    "match_condition": true
+	  }
+	  
+Upload using your new IID
+
+	curl i -H "iid:ca98cc2b5cd7d1b8cabaa748a252623c54c65942a608b315bfe2dcfb44cd66e7"  -F "file=@59b5b" https://ki.tc/file/u/
 	
-If Alice has a keybase account, a small icon will appear next to the UIDCERT allowing for easier verification. 
 	
-IID will act as warning later on, the system will keep track of iid’s and notify users if it’s changed.  
+	HTTP/1.1 100 Continue
 
-Verified uploads are API dependent, the web version doesn’t support UID. UID and SECRET should be passed as a header-not the best way to do it, will look into alternatives::
-
-	curl -i -H "uid:2fc08571a5350a038b27" -H "secret:TEST" -F "file=@Screenshot_20160729_014.png" https://ki.tc/file/u/
+	HTTP/1.1 201 CREATED
+	Date: Fri, 19 Jul 2019 19:02:28 GMT
+	Server: Apache/2.4.18 (Ubuntu)
+	Content-Length: 635
+	Content-Type: application/json
 
 	{
 	  "file": {
-	    "_id": "drogue.weddings.collectivist",
-	    "approved": "USER'S EMAIL",
-	    "download_page": "https://ki.tc/file/drogue.weddings.collectivist",
+	    "_id": "carnality.elderly.unreservedly",
+	    "approved": "YOUR_KEYBASE-USERNAME@ki.tc",
+	    "download_page": "https://ki.tc/file/carnality.elderly.unreservedly",
 	    "file": [
-	      "File Name: Screenshot_20160729_014.png",
-	      "Content Type: image/png"
+	      "File Name: 59b5b",
+	      "Content Type: application/octet-stream"
 	    ],
-	    "iid": "f288ca7ea7fb04229e22e33c0e819fc941c703e55ba82d0121dc3f79",
-	    "length": "526K",
-	    "link": "https://ki.tc/f/drogue.weddings.collectivist",
-	    "sha256": "98ad20a92f29c8b0e815f266c661975cfc11375e7d92a3b55bf13f78057736cc",
-	    "time": "Sun, 03 Mar 2019 11:10:14 GMT",
-	    "uidcert": "b3c3e382cea7b4b6104cc268b08838bd410bc9f6cbf16e39f32f218d"
+	    "ip256": "79f4fe7c35ed5cba2b5c74613e017a84680d7f96848303038de418b1fc23f71a",
+	    "length": "3K",
+	    "link": "https://ki.tc/f/carnality.elderly.unreservedly",
+	    "sha256": "d81dd207b277be80af3698b0872da2a35ae733f19c07b17b2cc41ca8ae1cf39a",
+	    "time": "Fri, 19 Jul 2019 19:02:28 GMT",
+	    "uidcert": "544a9894a7033d2dc8a1f822f7d9e78ed2baa56bfabffa9c5efc96a226180cb6"
 	  }
-	  
-If UID is passed, SECRET must be passed as well or the system will fallback to an internal server error.
+
+![Keybase Tag]
+(https://i.imgur.com/rnYwV3p.png)
+
+Note the Keybase tag
 
 
