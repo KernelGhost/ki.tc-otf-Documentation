@@ -50,9 +50,11 @@ DONT TRUST THE SERVICE....ALWAYS ENCRYPT::
 ====
 Understanding IID and UID
 ====
+
 Generate UID:
 
-	curl -X POST -F 'keybase_id=YOUR_KEYBASE-USERNAME' https://ki.tc/otf/generate_key
+       curl -X POST -F 'keybase_id=YOUR_KEYBASE-USERNAME' https://ki.tc/otf/generate_key
+
 
 
 	{
@@ -63,8 +65,11 @@ Generate UID:
 	    "uid": "9ff40341dc7c978839abd831595f65ef2b4aba9cda79d7c1057f335ac6dd66ec"
 	  }
 
+
 	  
 Check UID in Keybase, make sure you have created https://keybase.pub/YOUR_KEYBASE-USERNAME/otf/otf_key.txt
+
+
 
 	curl -X POST -F 'uid=9ff40341dc7c978839abd831595f65ef2b4aba9cda79d7c1057f335ac6dd66ec' https://ki.tc/otf/check_key
 
@@ -105,8 +110,7 @@ Upload using your new IID
 	    "uidcert": "544a9894a7033d2dc8a1f822f7d9e78ed2baa56bfabffa9c5efc96a226180cb6"
 	  }
 
-![Keybase Tag]
-(https://i.imgur.com/rnYwV3p.png)
+https://i.imgur.com/rnYwV3p.png
 
 Note the Keybase tag
 
