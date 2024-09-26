@@ -27,4 +27,4 @@ Aesthetics and an upload bar.
 Why should I use /otf?
 ----
 
-With the introduction of UID and IID, the system allows or a marginal trust between the uploader and the recipient. 
+With the introduction of UID and IID, the system allows for a degree of trust between the uploader and the recipient.
